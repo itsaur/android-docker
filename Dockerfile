@@ -26,6 +26,8 @@ ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 RUN echo y | android update sdk --no-ui --all --filter platform-tools | grep 'package installed'
 
 # SDKs
+RUN echo y | android update sdk --no-ui --all --filter android-27 | grep 'package installed'
+RUN echo y | android update sdk --no-ui --all --filter android-26 | grep 'package installed'
 RUN echo y | android update sdk --no-ui --all --filter android-25 | grep 'package installed'
 RUN echo y | android update sdk --no-ui --all --filter android-24 | grep 'package installed'
 RUN echo y | android update sdk --no-ui --all --filter android-23 | grep 'package installed'
@@ -33,6 +35,13 @@ RUN echo y | android update sdk --no-ui --all --filter android-18 | grep 'packag
 RUN echo y | android update sdk --no-ui --all --filter android-16 | grep 'package installed'
 
 # Build tools
+RUN echo y | android update sdk --no-ui --all --filter build-tools-27.0.3 | grep 'package installed'
+RUN echo y | android update sdk --no-ui --all --filter build-tools-27.0.2 | grep 'package installed'
+RUN echo y | android update sdk --no-ui --all --filter build-tools-27.0.1 | grep 'package installed'
+RUN echo y | android update sdk --no-ui --all --filter build-tools-26.0.2 | grep 'package installed'
+RUN echo y | android update sdk --no-ui --all --filter build-tools-26.0.1 | grep 'package installed'
+RUN echo y | android update sdk --no-ui --all --filter build-tools-26.0.0 | grep 'package installed'
+RUN echo y | android update sdk --no-ui --all --filter build-tools-25.0.3 | grep 'package installed'
 RUN echo y | android update sdk --no-ui --all --filter build-tools-25.0.2 | grep 'package installed'
 RUN echo y | android update sdk --no-ui --all --filter build-tools-25.0.1 | grep 'package installed'
 RUN echo y | android update sdk --no-ui --all --filter build-tools-25.0.0 | grep 'package installed'
