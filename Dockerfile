@@ -13,49 +13,75 @@ RUN apt-get update -qq \
   && apt-get install -y unzip \
   && rm -rf /var/lib/apt/lists/*
 
-RUN wget https://dl.google.com/android/repository/tools_r25.2.3-linux.zip
 
-RUN unzip tools_r25.2.3-linux.zip -d /opt/android-sdk-linux
+RUN wget https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip
 
-RUN rm -rf tools_r25.2.3-linux.zip
+RUN unzip sdk-tools-linux-3859397.zip -d /opt/android-sdk-linux
+
+RUN rm -rf sdk-tools-linux-3859397.zip
+
+RUN touch ~/.android/repositories.cfg
 
 ENV ANDROID_HOME /opt/android-sdk-linux
 
-ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-7"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-8"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-9"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-10"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-11"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-12"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-13"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-14"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-15"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-16"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-17"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-18"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-19"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-20"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-21"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-22"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-23"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-24"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-25"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-26"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-27"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-P"
 
-RUN echo y | android update sdk --no-ui --all --filter platform-tools | grep 'package installed'
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "sources;android-15"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "sources;android-16"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "sources;android-17"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "sources;android-18"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "sources;android-19"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "sources;android-20"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "sources;android-21"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "sources;android-22"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "sources;android-23"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "sources;android-24"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "sources;android-25"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "sources;android-26"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "sources;android-27"
 
-# SDKs
-RUN echo y | android update sdk --no-ui --all --filter android-P | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter android-27 | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter android-26 | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter android-25 | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter android-24 | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter android-23 | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter android-18 | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter android-16 | grep 'package installed'
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "patcher;v4"
 
-# Build tools
-RUN echo y | android update sdk --no-ui --all --filter build-tools-28.0.0 | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter build-tools-27.0.3 | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter build-tools-27.0.3 | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter build-tools-27.0.2 | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter build-tools-27.0.1 | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter build-tools-26.0.2 | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter build-tools-26.0.1 | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter build-tools-26.0.0 | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter build-tools-25.0.3 | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter build-tools-25.0.2 | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter build-tools-25.0.1 | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter build-tools-25.0.0 | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter build-tools-24.0.3 | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter build-tools-24.0.2 | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter build-tools-24.0.1 | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter build-tools-23.0.3 | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter build-tools-23.0.2 | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter build-tools-23.0.1 | grep 'package installed'
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "build-tools;27.0.3"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "build-tools;28.0.0-rc1"
 
-RUN android list sdk --all
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "add-ons;addon-google_apis-google-15"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "add-ons;addon-google_apis-google-16"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "add-ons;addon-google_apis-google-17"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "add-ons;addon-google_apis-google-18"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "add-ons;addon-google_apis-google-19"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "add-ons;addon-google_apis-google-21"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "add-ons;addon-google_apis-google-22"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "add-ons;addon-google_apis-google-23"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "add-ons;addon-google_apis-google-24"
+
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "emulator"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "extras;android;m2repository"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "extras;google;google_play_services"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "extras;google;instantapps"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "extras;google;webdriver"
+RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
 
 RUN mkdir "$ANDROID_HOME/licenses" || true
 RUN echo -e "\nd56f5187479451eabf01fb78af6dfcb131a6481e" > "$ANDROID_HOME/licenses/android-sdk-license"
