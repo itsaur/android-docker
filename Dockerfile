@@ -20,8 +20,6 @@ RUN unzip sdk-tools-linux-3859397.zip -d /opt/android-sdk-linux
 
 RUN rm -rf sdk-tools-linux-3859397.zip
 
-RUN touch ~/.android/repositories.cfg
-
 ENV ANDROID_HOME /opt/android-sdk-linux
 
 RUN echo yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-7"
