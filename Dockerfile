@@ -36,7 +36,7 @@ RUN echo y | android update sdk --no-ui --all --filter android-18 | grep 'packag
 RUN echo y | android update sdk --no-ui --all --filter android-16 | grep 'package installed'
 
 # Build tools
-RUN echo y | android update sdk --no-ui --all --filter build-tools-28.0.0-rc1 | grep 'package installed'
+RUN echo y | android update sdk --no-ui --all --filter build-tools-28.0.0 | grep 'package installed'
 RUN echo y | android update sdk --no-ui --all --filter build-tools-27.0.3 | grep 'package installed'
 RUN echo y | android update sdk --no-ui --all --filter build-tools-27.0.3 | grep 'package installed'
 RUN echo y | android update sdk --no-ui --all --filter build-tools-27.0.2 | grep 'package installed'
